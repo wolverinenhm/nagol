@@ -16,6 +16,7 @@ jobs:
       - run: npm test
       - run: npm run check
       - run: npm install --no-audit --no-fund
+      - run: npx --no-install electron scripts/desktop-smoke.cjs
       - run: npm run build
       - run: npm run release:zip
       - uses: actions/upload-artifact@v4
