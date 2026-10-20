@@ -1,0 +1,25 @@
+name: Test and package Windows
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test
+      - run: npm run check
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - run: npm run release:zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Nagol-Windows-developer-preview
+          path: dist/Nagol-0.1.0-windows-x64.zip
+          if-no-files-found: error
