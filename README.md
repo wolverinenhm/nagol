@@ -133,11 +133,14 @@ The build script runs tests/checks, copies Electron and the application into
 `Nagol.exe`; the adjacent runtime files are required. This is a portable app,
 not an MSI/NSIS installer. A fresh output directory is required for each build.
 
-**No executable or installer is included in this source-only delivery.**
-Dependency downloads were blocked in the authoring environment. The Windows CI
-workflow can produce a downloadable build artifact once the project is uploaded.
-It has not been run on GitHub yet. Binary signing and installer creation remain
-release tasks. Do not describe an unsigned, untested preview as production-ready.
+**The source repository does not contain binaries or an installer.**
+Dependency downloads were blocked locally, but GitHub's Windows runner successfully
+installed Electron and built `Nagol.exe` on 20 October 2026. Check the
+[Windows build run](https://github.com/wolverinenhm/nagol/actions)
+for the portable ZIP artifact. Extract both the downloaded artifact and its inner
+portable ZIP, then run `Nagol.exe` from the full extracted folder. Desktop launch,
+live providers, signing, and clean-machine smoke tests remain unverified. This
+unsigned developer preview is not a production release or an installer.
 
 Electron is pinned to 44.9.1. A lockfile is deliberately not fabricated: generate
 and commit `package-lock.json` after the first successful `npm install`, then

@@ -21,5 +21,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: Nagol-Windows-developer-preview
-          path: dist/Nagol-0.1.0-windows-x64.zip
+          path: |
+            dist/Nagol-0.1.0-windows-x64.zip
+            dist/Nagol-0.1.0-windows-x64.zip.sha256
           if-no-files-found: error

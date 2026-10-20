@@ -15,5 +15,7 @@ email/calendar OAuth, or guaranteed purchases are provided. No shared keys or
 model weights are bundled. All cloud use is selected by the user; no automatic
 fallback occurs. Provider charges, quotas and data policies apply.
 
-A portable executable must be built and smoke-tested before attaching it to this
-release. If only source is attached, do not claim an executable is included.
+A portable executable was built by GitHub Windows CI on 20 October 2026.
+The CI artifact is an unsigned developer preview, not a tested production release
+or installer. Desktop smoke tests and live provider validation remain outstanding.
+Build records: https://github.com/wolverinenhm/nagol/actions.

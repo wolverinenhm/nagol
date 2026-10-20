@@ -29,17 +29,18 @@ limits. Provider/network tests use deterministic fixtures, not live accounts.
 This passed again during the retry before source
 delivery. No UI rendering assertion is inferred from syntax checks.
 
-## Blocked / not executed
+## Local limitations and remaining unverified checks
 
 - npm dependency installation: registry.npmjs.org DNS lookup failed (ENOTFOUND).
-- Electron runtime installation, actual desktop launch and portable EXE build.
+- Local Electron runtime installation and actual desktop launch. The portable EXE
+  build later succeeded on GitHub's Windows runner; see the remote record below.
 - Visual/UI interaction tests, screen-reader testing, Windows DPAPI, tray,
   notifications, research Chromium, native dialogs and PDF output.
 - Real OpenAI, Anthropic, Gemini, Ollama or hosted custom provider requests.
 - Live MCP server calls, Docker container execution, and actual image generation.
 - Clean-machine install/launch and code signing.
-- GitHub Actions execution. At the earlier attempt, the connector had no accessible
-  repository or creation API; the attempted browser connection failed.
+- At the earlier attempt, repository creation was blocked. The retry created
+  the repository, uploaded all 38 files, and started Windows CI successfully.
 
 A UI fixture was prepared during development but no successful browser inspection
 occurred. It is not packaged as an application or used to claim features work.
@@ -89,4 +90,12 @@ actual runtime versions and results when those gates are completed.
 
 ## Retry on 20 October 2026
 
-Core tests again passed: 29 passed, 1 skipped, 0 failed. Syntax and release-file checks passed. npm installation again failed with ENOTFOUND. Browser access succeeded and the public repository wolverinenhm/nagol was created. Remote build results must be checked separately from the local checks above.
+Core tests again passed: 29 passed, 1 skipped, 0 failed. Syntax and release-file checks passed. Local npm installation again failed with ENOTFOUND. Browser access succeeded and the public repository wolverinenhm/nagol was created. All 38 uploaded files matched the local source bytes.
+
+GitHub Windows CI for commit `67597050f5dec48d66a9189397fc727df5064197`
+passed its test and syntax-check steps, installed Electron, and successfully ran
+the portable executable build. Run: https://github.com/wolverinenhm/nagol/actions/runs/39412677179.
+Building an executable does not establish desktop launch, UI behavior, or live
+provider compatibility. The manual smoke-test checklist above still applies.
+
+The first GitHub run passed all 30 tests (zero skipped), built Nagol.exe, and created the ZIP, but failed at the final Get-FileHash command. The packaging script now uses .NET SHA-256 directly and emits a checksum sidecar. This revised archive script passed a local packaging fixture check. Check the latest Actions run for the complete artifact-upload outcome.
